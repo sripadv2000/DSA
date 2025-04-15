@@ -4,8 +4,6 @@ class Solution:
         buy = prices[0]
         N = len(prices)
         for i in range(1, N):
-            if prices[i] < buy:
-                buy = prices[i]
-            if (prices[i] - buy) > max_profit:
-                max_profit = (prices[i] - buy)
+                buy = min(buy, prices[i])
+                max_profit = max(max_profit, prices[i] - buy)
         return max_profit

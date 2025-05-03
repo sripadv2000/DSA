@@ -9,8 +9,4 @@ class Solution:
             if len(max_heap) > k:
                 heapq.heappop(max_heap)
         
-        res = []
-        while(max_heap):
-            res.append(heapq.heappop(max_heap)[1])
-        
-        return res
+        return [pair[1] for pair in max_heap]

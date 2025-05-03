@@ -4,7 +4,7 @@ class Solution:
         
         for point in points:
             x, y = point
-            dist = round(sqrt(x**2 + y**2), 2)
+            dist = x*x + y*y
             heapq.heappush(max_heap, (-dist, point))
             if len(max_heap) > k:
                 heapq.heappop(max_heap)

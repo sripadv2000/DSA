@@ -10,7 +10,6 @@ class Solution:
         for val in map.values():
             heapq.heappush(minHeap, val)
             if len(minHeap) > k:
-                min_del += minHeap[0]
-                heapq.heappop(minHeap)
+                min_del += heapq.heappop(minHeap)
 
         return min_del

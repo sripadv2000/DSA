@@ -3,15 +3,18 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        zero, one, n = 0, 0, len(nums)
-        for i in range(n):
-            if nums[i] == 0:
-                zero += 1
-            elif nums[i] == 1:
-                one += 1
-        for i in range(zero):
-            nums[i] = 0
-        for i in range(zero, zero+one):
-            nums[i] = 1
-        for i in range(zero+one, n):
-            nums[i] = 2
+        N = len(nums)
+        zero_pointer = 0
+        two_pointer = N - 1
+
+        curr_pointer = 0
+        while curr_pointer <= two_pointer:
+            if nums[curr_pointer] == 0:
+                nums[curr_pointer], nums[zero_pointer] = nums[zero_pointer], nums[curr_pointer]
+                zero_pointer += 1
+                curr_pointer += 1
+            elif nums[curr_pointer] == 2:
+                nums[curr_pointer], nums[two_pointer] = nums[two_pointer], nums[curr_pointer]
+                two_pointer -= 1
+            else:
+                curr_pointer += 1

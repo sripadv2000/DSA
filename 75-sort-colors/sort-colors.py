@@ -13,8 +13,8 @@ class Solution:
                 nums[curr_pointer], nums[zero_pointer] = nums[zero_pointer], nums[curr_pointer]
                 zero_pointer += 1
                 curr_pointer += 1
+            elif nums[curr_pointer] == 1:
+                curr_pointer += 1
             elif nums[curr_pointer] == 2:
                 nums[curr_pointer], nums[two_pointer] = nums[two_pointer], nums[curr_pointer]
                 two_pointer -= 1
-            else:
-                curr_pointer += 1

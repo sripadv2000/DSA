@@ -3,7 +3,10 @@ class Solution:
         def find_hours(arr, rate):
             hours = 0
             for i in range(len(arr)):
-                hours += math.ceil(arr[i]/rate)
+                if arr[i]%rate == 0:
+                    hours += arr[i]//rate
+                else:
+                    hours += arr[i]//rate + 1
             return hours
 
         l, r = 1, max(piles)

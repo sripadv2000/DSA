@@ -1,13 +1,15 @@
+from collections import defaultdict
+
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        
-        counts = [0]*26
+        hashMap = defaultdict(int)
         for char in s:
-            counts[ord(char) - ord('a')] += 1
+            hashMap[char] += 1
         for char in t:
-            counts[ord(char) - ord('a')] -= 1
+            hashMap[char] -= 1
 
-        for count in counts:
-            if count != 0:
+        for key, val in hashMap.items():
+            if val != 0:
                 return False
+        
         return True

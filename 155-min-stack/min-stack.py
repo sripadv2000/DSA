@@ -11,7 +11,7 @@ class MinStack:
 
     def pop(self) -> None:
         poping_element = self.stack[-1]
-        if self.minStack and self.minStack[-1] == poping_element:
+        if self.minStack[-1] == poping_element:
             self.minStack.pop()
         return self.stack.pop()
 

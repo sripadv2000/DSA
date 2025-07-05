@@ -6,7 +6,7 @@ class Solution:
         for n in arr:
             freq[n] += 1
             
-        for i in range(500, -1, -1):
+        for i in range(len(arr), -1, -1):
             if freq[i] == i:
                 return i
         return -1

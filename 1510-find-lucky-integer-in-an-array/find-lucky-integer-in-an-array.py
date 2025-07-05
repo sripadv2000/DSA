@@ -1,8 +1,12 @@
 class Solution:
     def findLucky(self, arr: List[int]) -> int:
-        cnt = Counter(arr)
-        res = -1
-        for key, val in cnt.items():
-            if key == val:
-                res = max(res, val)
-        return res
+        freq = [0]*501
+        freq[0] = -1
+
+        for n in arr:
+            freq[n] += 1
+            
+        for i in range(500, -1, -1):
+            if freq[i] == i:
+                return i
+        return -1

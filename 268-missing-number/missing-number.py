@@ -4,6 +4,5 @@ class Solution:
         N = len(nums)
         for i in range(N):
             xor ^= nums[i]
-        for i in range(N+1):
-            xor ^= i
+            xor ^= i+1
         return xor

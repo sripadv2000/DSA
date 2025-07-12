@@ -3,6 +3,5 @@ class Solution:
         xor = 0
         N = len(nums)
         for i in range(N):
-            xor ^= nums[i]
-            xor ^= i+1
+            xor = xor ^ nums[i]  ^ (i+1)
         return xor

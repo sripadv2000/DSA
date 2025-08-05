@@ -8,8 +8,7 @@ class Solution:
             for j in range(n):
                 if not used[j] and fruits[i] <= baskets[j]:
                     used[j] = True
+                    cnt += 1
                     break
-            else:
-                cnt += 1
 
-        return cnt
+        return (n - cnt)

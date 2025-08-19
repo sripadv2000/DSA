@@ -2,7 +2,7 @@ class Solution:
     def zeroFilledSubarray(self, nums: List[int]) -> int:
         n = len(nums)
 
-        d = defaultdict(int)
+        res = 0
 
         l = 0
         r = 0
@@ -14,11 +14,7 @@ class Solution:
                 r = l
                 while r<n and nums[r] == 0:
                     r += 1
-                d[r-l] += 1
+                    res += (r-l)
                 l = r
 
-        res = 0
-        for k, v in d.items():
-            res += (k*(k+1)//2)*v
-            
         return res

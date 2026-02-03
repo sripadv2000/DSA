@@ -1,15 +1,12 @@
-from collections import defaultdict
-
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        hashMap = defaultdict(int)
+        freq = [0]*26
         for char in s:
-            hashMap[char] += 1
+            freq[ord(char) - ord('a')] += 1
         for char in t:
-            hashMap[char] -= 1
+            freq[ord(char) - ord('a')] -= 1
 
-        for key, val in hashMap.items():
-            if val != 0:
+        for count in freq:
+            if count != 0:
                 return False
-        
         return True

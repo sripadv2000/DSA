@@ -3,11 +3,14 @@ class Solution:
         def NGR(arr):
             n = len(arr)
             res = [-1]*n
-            for i in range(n):
-                for j in range(i+1, n):
-                    if arr[j]>arr[i]:
-                        res[i]=arr[j]
-                        break
+            stack = []
+            for i in range(n-1,-1,-1):
+                while stack and arr[i] >= stack[-1]:
+                    stack.pop()
+                    
+                if stack:
+                    res[i] = stack[-1]
+                stack.append(arr[i])
             return res
 
         ngr = NGR(nums2)

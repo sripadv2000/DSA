@@ -14,9 +14,16 @@ class Solution:
             return res
 
         ngr = NGR(nums2, n2)
-        
+
+        dict = {}
+        for i in range(n2):
+            dict[nums2[i]] = ngr[i]
         # Map nums2 values to their NGR result for O(1) access
-        mapping = {nums2[i]: ngr[i] for i in range(n2)}
+        # mapping = {nums2[i]: ngr[i] for i in range(n2)}
         
-        # Build the final result based on nums1
-        return [mapping[val] for val in nums1]
+        res = []
+        for num in nums1:
+            res.append(dict[num])
+        return res
+        # # Build the final result based on nums1
+        # return [mapping[val] for val in nums1]

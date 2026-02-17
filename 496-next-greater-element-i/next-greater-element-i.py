@@ -1,10 +1,10 @@
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        def NGR(arr):
-            n = len(arr)
-            res = [-1]*n
+        n1, n2  = len(nums1), len(nums2)
+        def NGR(arr, n2):
+            res = [-1]*n2
             stack = []
-            for i in range(n-1,-1,-1):
+            for i in range(n2-1,-1,-1):
                 while stack and arr[i] >= stack[-1]:
                     stack.pop()
                     
@@ -13,10 +13,10 @@ class Solution:
                 stack.append(arr[i])
             return res
 
-        ngr = NGR(nums2)
-        result = []
-        for i in range(len(nums1)):
-            for j in range(len(nums2)):
-                if nums1[i]==nums2[j]:
-                    result.append(ngr[j])
-        return result
+        ngr = NGR(nums2, n2)
+        
+        # Map nums2 values to their NGR result for O(1) access
+        mapping = {nums2[i]: ngr[i] for i in range(n2)}
+        
+        # Build the final result based on nums1
+        return [mapping[val] for val in nums1]

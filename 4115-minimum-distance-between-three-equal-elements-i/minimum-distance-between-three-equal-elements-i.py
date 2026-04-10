@@ -1,0 +1,13 @@
+class Solution:
+    def minimumDistance(self, nums: List[int]) -> int:
+        res = sys.maxsize
+        n = len(nums)
+        for i in range(n-2):
+            for j in range(i+1, n-1):
+                for k in range(j+1, n):
+                    if nums[i]==nums[j]==nums[k]:
+                        res = min(abs(i-j)+abs(j-k)+abs(k-i), res)
+        if res != sys.maxsize:
+            return res
+        else:
+            return -1

@@ -1,17 +1,18 @@
+from collections import defaultdict
+
 class Solution:
     def minimumDistance(self, nums: List[int]) -> int:
         n = len(nums)
-        res = 2*n
-        for i in range(n-2):
-            for j in range(i+1, n-1):
-                if nums[i] != nums[j]:
-                    continue
-                for k in range(j+1, n):
-                    if nums[j]==nums[k]:
-                        res = min(2*(k-i), res)
-                        break
+        map = defaultdict(list)
 
-        if res != 2*n:
-            return res
-        else:
-            return -1
+        for idx, num in enumerate(nums):
+            map[num].append(idx)
+
+        mini = 2*n
+
+        for temp in map.values():
+            m = len(temp)
+            if m >= 3:
+                for i in range(m-2):
+                    mini = min(2*(temp[i+2]-temp[i]), mini)
+        return -1 if mini == 2*n else mini

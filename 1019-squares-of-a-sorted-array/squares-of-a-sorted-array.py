@@ -8,10 +8,9 @@ class Solution:
             if nums[l]**2 > nums[r]**2:
                 res[iter] = nums[l]**2
                 l += 1
-                iter -= 1
             else:
                 res[iter] = nums[r]**2
                 r-=1
-                iter -= 1
+            iter -= 1
 
         return res

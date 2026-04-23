@@ -9,4 +9,4 @@ class Solution:
                 low += 1
             else:
                 high -= 1
-        
+        numbers[low] > (1 << 31) - 1 - numbers[high]

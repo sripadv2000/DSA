@@ -1,36 +1,31 @@
-import collections
-import sys
+from collections import Counter
 
 class Solution:
-    def minWindow(self, searchString, t):
-        left = 0
-        right = 0
+    def minWindow(self, s: str, t: str) -> str:
+        if not t:
+            return ""
         
-        # It stores the length of maximum valid substring 
-        minimum = sys.maxsize
-        counter_t = collections.Counter(t)
-        counter_search = collections.defaultdict(int)
-        count = 0
-        minimum_window = ""
+        countT = Counter(t)
+        window = {}
 
-        # Here we use the 2 pointers approach
-        while right < len(searchString):
-            counter_search[searchString[right]] += 1
-            if searchString[right] in counter_t: 
-                if counter_search[searchString[right]] <= counter_t[searchString[right]]:
-                    count += 1
-            
-            while left <= right and count == len(t):
-                if minimum > right - left + 1:
-                    minimum = right - left + 1
-                    minimum_window = searchString[left : right + 1]
-                
-                counter_search[searchString[left]] -= 1
-                if searchString[left] in counter_t and counter_search[searchString[left]] < counter_t[searchString[left]]:
-                    count-=1
-                    
-                left += 1
-            
-            right += 1
-            
-        return minimum_window
+        have, need = 0, len(countT)
+        res, resLen = [-1, -1], float("inf")
+
+        l = 0
+        for r in range(len(s)):
+            c = s[r]
+            window[c] = 1 + window.get(c, 0)
+
+            if c in countT and window[c] == countT[c]:
+                have += 1
+
+            while have == need:
+                if (r - l + 1) < resLen:
+                    res = [l, r]
+                    resLen = (r - l + 1)
+                window[s[l]] -= 1
+                if s[l] in countT and window[s[l]] < countT[s[l]]:
+                    have -= 1
+                l += 1
+        lIdx, rIdx = res
+        return s[lIdx: rIdx + 1] if resLen != float("inf") else ""

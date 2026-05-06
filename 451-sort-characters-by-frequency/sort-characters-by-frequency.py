@@ -1,14 +1,19 @@
 class Solution:
     def frequencySort(self, s: str) -> str:
-        hash_map = Counter(s)
-        max_heap = []
+        n = len(s)
+        freq = {}
+         
+        for ch in s:
+            freq[ch] = 1 + freq.get(ch, 0)
         
-        for num in hash_map:
-            heapq.heappush(max_heap, (-hash_map[num], num))
-            
-        res = ""
-        while max_heap:
-            f, val = heapq.heappop(max_heap)
-            res += val * -f
+        def my_fun(a):
+            return freq[a]
+
+        sorted_arr = sorted(freq.keys(), key = my_fun, reverse = True)
         
-        return res
+        res = []
+        for ch in sorted_arr:
+            res.append(ch*freq[ch])
+        
+        return "".join(res)
+    

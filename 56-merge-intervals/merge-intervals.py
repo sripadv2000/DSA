@@ -4,10 +4,8 @@ class Solution:
         intervals.sort(key = lambda x : x[0])
 
         for interval in intervals:
-            if not merged:
-                merged.append(interval)
-            if merged[-1][1] < interval[0]:
+            if not merged or merged[-1][1] < interval[0]:
                 merged.append(interval)
             elif merged[-1][1] < interval[1]:
-                merged[-1][1] =  interval[1]
+                merged[-1][1] = interval[1]
         return merged

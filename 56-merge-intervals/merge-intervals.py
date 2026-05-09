@@ -8,6 +8,6 @@ class Solution:
                 merged.append(interval)
             if merged[-1][1] < interval[0]:
                 merged.append(interval)
-            else:
-                merged[-1][1] = max(merged[-1][1], interval[1])
+            elif merged[-1][1] < interval[1]:
+                merged[-1][1] =  interval[1]
         return merged

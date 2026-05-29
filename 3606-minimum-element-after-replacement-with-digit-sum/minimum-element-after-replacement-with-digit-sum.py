@@ -1,10 +1,7 @@
 class Solution:
     def minElement(self, nums: List[int]) -> int:
-        res = 37
-        for num in nums:
-            digit = 0
-            while num > 0:
-                digit += num % 10
-                num //= 10
-            res = min(res, digit)
+        res = 36
+        for n in nums:
+            res = min(res, n - 9 * ((n//10) + (n//100) + (n//1000) + (n//10000)))
+            
         return res

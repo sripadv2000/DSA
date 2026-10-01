@@ -9,5 +9,5 @@ class Solution:
                     stack.pop()
                 else:
                     return False
-        return True if len(stack)==0 else False
+        return not stack
         
